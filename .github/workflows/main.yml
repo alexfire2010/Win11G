@@ -1,0 +1,18 @@
+name: Windows Server Workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-11
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - run: |
+          $psversiontable
+          Write-Host "Hello World"
+          Get-ComputerInfo
+          docker run --name myiisserver --restart always mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019
+          
